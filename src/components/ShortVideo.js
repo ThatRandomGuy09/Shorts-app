@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 const ShortVideo = ({ src, title }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -7,7 +7,7 @@ const ShortVideo = ({ src, title }) => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '0px',
+      rootMargin: "0px",
       threshold: 0.5,
     };
 
@@ -37,11 +37,11 @@ const ShortVideo = ({ src, title }) => {
   }, [isVisible]);
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-367 h-653 overflow-hidden">
       <video
         ref={videoRef}
         src={src}
-        className="w-full h-full object-cover"
+        className="w-full h-auto object-cover"
         loop
         muted
         playsInline
