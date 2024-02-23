@@ -1,43 +1,35 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from 'react';
+
 
 const ShortVideo = ({ src, title }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const videoRef = useRef(null);
 
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        setIsVisible(entry.isIntersecting);
-      });
-    }, options);
-
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+  const togglePlayPause = () => {
+    if (isPlaying) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play();
     }
+    setIsPlaying(!isPlaying);
+  };
 
+  const updateTime = () => {
+    setCurrentTime(videoRef.current.currentTime);
+    setDuration(videoRef.current.duration);
+  };
+
+  useEffect(() => {
+    videoRef.current.addEventListener('timeupdate', updateTime);
     return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
-      }
+      videoRef.current.removeEventListener('timeupdate', updateTime);
     };
   }, []);
 
-  useEffect(() => {
-    if (isVisible) {
-      videoRef.current.play();
-    } else {
-      videoRef.current.pause();
-    }
-  }, [isVisible]);
-
   return (
-    <div className="relative w-367 h-653 overflow-hidden">
+    <div className="relative">
       <video
         ref={videoRef}
         src={src}
@@ -46,9 +38,7 @@ const ShortVideo = ({ src, title }) => {
         muted
         playsInline
       />
-      <p className="absolute bottom-0 left-0 right-0 bg-black text-white px-2 py-1 text-sm">
-        {title}
-      </p>
+     
     </div>
   );
 };

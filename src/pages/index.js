@@ -36,6 +36,7 @@ const Home = () => {
             title={video.title}
             onInView={() => handleVideoInView(index)}
           />
+          
         </div>
       ))}
     </div>
