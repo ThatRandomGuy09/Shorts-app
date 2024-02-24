@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 const VideoControls = ({ videoRef }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const intervalRef = useRef();
 
@@ -53,7 +54,7 @@ const VideoControls = ({ videoRef }) => {
   };
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-4 bg-black bg-opacity-50 text-white">
+    <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-4  text-white">
       <button onClick={togglePlayPause} className="focus:outline-none">
         {/* No text here */}
       </button>
