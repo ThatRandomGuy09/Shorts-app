@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import ShortVideo from "../components/ShortVideo";
 
 const videos = [
-  { src: "/videos/video1.mp4", title: "Video 1" },
-  { src: "/videos/video2.mp4", title: "Video 2" },
+  { src: "/videos/video1.mp4", title: "Mountains" },
+  { src: "/videos/video2.mp4", title: "Pepole going on a Trek" },
 ];
 
 const Home = () => {
