@@ -55,7 +55,7 @@ const VideoControls = ({ videoRef }) => {
   return (
     <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-4 bg-black bg-opacity-50 text-white">
       <button onClick={togglePlayPause} className="focus:outline-none">
-        {isPlaying ? 'Pause' : 'Play'}
+        {/* No text here */}
       </button>
       <div className="flex items-center">
         <span className="mr-2">{formatTime(duration * (progress / 100))}</span>

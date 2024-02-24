@@ -4,7 +4,6 @@ import ShortVideo from "../components/ShortVideo";
 const videos = [
   { src: "/videos/video1.mp4", title: "Video 1" },
   { src: "/videos/video2.mp4", title: "Video 2" },
-  // Add more video objects as needed
 ];
 
 const Home = () => {
@@ -36,7 +35,6 @@ const Home = () => {
             title={video.title}
             onInView={() => handleVideoInView(index)}
           />
-          
         </div>
       ))}
     </div>
