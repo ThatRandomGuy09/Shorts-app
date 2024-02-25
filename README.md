@@ -39,5 +39,5 @@ http://localhost:3000
 
 ## Note
 
-The app currently lacks responsiveness, but I will be implementing it soon. If you have any suggestions, I am happy to learn and imporve
+The app currently lacks responsiveness, but I will be implementing it soon. If you have any suggestions, I am happy to learn and imporve, Just a Small Request, have your screen size 130 % , yes this is an designing Error, will suerly imporve it
 
