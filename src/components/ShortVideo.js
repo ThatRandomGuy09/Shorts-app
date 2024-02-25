@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState } from 'react';
-import VideoControls from './VideoControls';
+import { useRef, useEffect, useState } from "react";
+import VideoControls from "./VideoControls";
 
 const ShortVideo = ({ src, title }) => {
   const videoRef = useRef(null);
@@ -20,7 +20,7 @@ const ShortVideo = ({ src, title }) => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '0px',
+      rootMargin: "0px",
       threshold: 0.5,
     };
 
@@ -44,9 +44,9 @@ const ShortVideo = ({ src, title }) => {
     const handleLoadedMetadata = () => {
       setDuration(video.duration);
     };
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener("loadedmetadata", handleLoadedMetadata);
     return () => {
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
     };
   }, []);
 
@@ -60,30 +60,61 @@ const ShortVideo = ({ src, title }) => {
 
   return (
     <div className="relative">
-      <video ref={videoRef} src={src} className="w-full h-auto object-cover" loop muted playsInline />
-      <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2" onClick={togglePlayPause}>
+      <video
+        ref={videoRef}
+        src={src}
+        className="w-full h-auto object-cover"
+        loop
+        muted
+        playsInline
+      />
+      <button
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-2"
+        onClick={togglePlayPause}
+      >
         {isPlaying ? (
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7" />
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M5 15l7-7 7 7"
+            />
           </svg>
         ) : (
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         )}
       </button>
       <VideoControls videoRef={videoRef} duration={duration} />
       <div className="absolute bottom-0 left-0 right-0 p-2 flex justify-between">
-        <button className="bg-black bg-opacity-50 text-white rounded-full p-2" onClick={handleLikeClick}>
-          👍
-          <span className="ml-1">{likeCount}</span>
+        <button
+          className="bg-black bg-opacity-50 text-white rounded-full p-2"
+          onClick={handleLikeClick}
+        >
+          ♥<span className="ml-1">{likeCount}</span>
         </button>
-        {/* <VideoControls videoRef={videoRef} duration={duration} /> */}
       </div>
     </div>
   );
 };
 
-ShortVideo.displayName = 'ShortVideo';
+ShortVideo.displayName = "ShortVideo";
 
 export default ShortVideo;

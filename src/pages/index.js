@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ShortVideo from "../components/ShortVideo";
+import Navbar from "@/components/NavBar";
 
 const videos = [
   { src: "/videos/video1.mp4", title: "Mountains" },
@@ -27,6 +28,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col gap-4">
+      <Navbar />
       {videos.map((video, index) => (
         <div key={index} className="relative max-w-xl mx-auto">
           <ShortVideo
