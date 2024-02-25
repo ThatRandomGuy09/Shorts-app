@@ -72,17 +72,18 @@ const ShortVideo = ({ src, title }) => {
           </svg>
         )}
       </button>
+      <VideoControls videoRef={videoRef} duration={duration} />
       <div className="absolute bottom-0 left-0 right-0 p-2 flex justify-between">
         <button className="bg-black bg-opacity-50 text-white rounded-full p-2" onClick={handleLikeClick}>
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6s2-2 4-2 4 2 4 2M12 4v16m5-9c0 2.21-1.79 4-4 4s-4-1.79-4-4" />
-          </svg>
+          👍
           <span className="ml-1">{likeCount}</span>
         </button>
-        <VideoControls videoRef={videoRef} duration={duration} />
+        {/* <VideoControls videoRef={videoRef} duration={duration} /> */}
       </div>
     </div>
   );
 };
+
+ShortVideo.displayName = 'ShortVideo';
 
 export default ShortVideo;

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from "react";
 
 const VideoControls = ({ videoRef }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -21,19 +21,25 @@ const VideoControls = ({ videoRef }) => {
     };
 
     const handleTimeUpdate = () => {
-      setProgress((video.currentTime / video.duration) * 100);
+      const currentTime = video.currentTime;
+      const duration = video.duration;
+      const progress = (currentTime / duration) * 100;
+
+      setCurrentTime(currentTime);
+      setDuration(duration);
+      setProgress(progress);
     };
 
     const handleLoadedMetadata = () => {
       setDuration(video.duration);
     };
 
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    video.addEventListener("loadedmetadata", handleLoadedMetadata);
 
     return () => {
-      video.removeEventListener('timeupdate', handleTimeUpdate);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener("timeupdate", handleTimeUpdate);
+      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
     };
   }, [videoRef]);
 
@@ -50,16 +56,17 @@ const VideoControls = ({ videoRef }) => {
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
   };
 
   return (
     <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-4  text-white">
-      <button onClick={togglePlayPause} className="focus:outline-none">
-        {/* No text here */}
-      </button>
+      <button onClick={togglePlayPause} className="focus:outline-none"></button>
       <div className="flex items-center">
-        <span className="mr-2">{formatTime(duration * (progress / 100))}</span>
+        <span className="mr-2">{formatTime(currentTime)}</span>
         <input
           type="range"
           value={progress}

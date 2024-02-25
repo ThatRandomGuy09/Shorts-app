@@ -3,7 +3,7 @@ import ShortVideo from "../components/ShortVideo";
 
 const videos = [
   { src: "/videos/video1.mp4", title: "Mountains" },
-  { src: "/videos/video2.mp4", title: "Pepole going on a Trek" },
+  { src: "/videos/video2.mp4", title: "People going on a Trek" },
 ];
 
 const Home = () => {
@@ -16,11 +16,11 @@ const Home = () => {
 
   useEffect(() => {
     if (videoRefs.current[activeIndex]) {
-      videoRefs.current[activeIndex].play();
+      videoRefs.current[activeIndex].current.play();
     }
     return () => {
       if (videoRefs.current[activeIndex]) {
-        videoRefs.current[activeIndex].pause();
+        videoRefs.current[activeIndex].current.pause();
       }
     };
   }, [activeIndex]);
@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <div className="flex flex-col gap-4">
       {videos.map((video, index) => (
-        <div key={index} className="relative  max-w-xl mx-auto">
+        <div key={index} className="relative max-w-xl mx-auto">
           <ShortVideo
             ref={(el) => (videoRefs.current[index] = el)}
             src={video.src}
